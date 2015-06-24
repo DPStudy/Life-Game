@@ -1,21 +1,21 @@
 package com.life.game.stone;
 
 public class Stone {
-	StoneState st = StoneState.die;
+	State st = State.die;
 	
 	public void alive() {
-		st = StoneState.alive;
+		st = State.alive;
 	}
 
 	public void die() {
-		st = StoneState.die;
+		st = State.die;
 	}
 
 	public boolean isAlive() {
-		return st == StoneState.alive ? true : false;
+		return st == State.alive ? true : false;
 	}
 
-	enum StoneState {
+	public enum State {
 		alive, die
 	}
 }
