@@ -8,7 +8,7 @@ import com.life.viewer.ConsoleViewer;
 import com.life.viewer.Viewer;
 
 public class GameManager implements Runnable {
-	private final long INTERVAL = 5000L;
+	private final long INTERVAL = 1000L;
 	private final int X_LENGTH = 10;
 	private final int Y_LENGTH = 10;
 	

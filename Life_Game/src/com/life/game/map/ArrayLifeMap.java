@@ -9,7 +9,7 @@ public class ArrayLifeMap implements LifeMap {
 		map = new Stone[yLength][xLength];
 		for(int x = 0; x < xLength; x++) {
 			for(int y = 0; y < yLength; y++) {
-				die(x, y);
+				map[x][y] = new Stone();
 			}
 		}
 	}
