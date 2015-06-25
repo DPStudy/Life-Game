@@ -7,6 +7,11 @@ public class ArrayLifeMap implements LifeMap {
 	
 	public ArrayLifeMap(int xLength, int yLength) {
 		map = new Stone[yLength][xLength];
+		for(int x = 0; x < xLength; x++) {
+			for(int y = 0; y < yLength; y++) {
+				die(x, y);
+			}
+		}
 	}
 	
 	@Override
@@ -31,7 +36,7 @@ public class ArrayLifeMap implements LifeMap {
 	}
 
 	private boolean isValidXY(int x, int y) {
-		if(isValidXY(x, y))
+		if(x >= 0 && x < getXRange() && y >= 0 && y < getYRange())
 			return map[y] != null && map[y][x] != null;
 		else 
 			return false;

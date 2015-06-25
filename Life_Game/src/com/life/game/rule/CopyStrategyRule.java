@@ -8,13 +8,18 @@ public class CopyStrategyRule extends AbstractRule {
 	
 	LifeMap nextStateMap;
 	
-	public CopyStrategyRule(int xLength, int yLength) {
-		super(xLength, yLength);
-		nextStateMap = new ArrayLifeMap(xLength, yLength);
+	public CopyStrategyRule(LifeMap srcMap) {
+		super(srcMap);
+		nextStateMap = new ArrayLifeMap(srcMap.getXRange(), srcMap.getYRange());
+		for(int x = 0; x < srcMap.getXRange(); x++) {
+			for(int y = 0; y < srcMap.getYRange(); y++) {
+				if(srcMap.isAlive(x, y)) nextStateMap.alive(x, y);
+			}
+		}
 	}
 	
 	@Override
-	public void nextState() throws Exception {
+	public LifeMap nextState() throws Exception {
 		for(int x = 0; x < srcMap.getXRange(); x++) {
 			for(int y = 0; y < srcMap.getYRange(); y++) {
 				if(isAlive(x, y)) {
@@ -24,6 +29,17 @@ public class CopyStrategyRule extends AbstractRule {
 				}
 			}
 		}
+		
+		for(int x = 0; x < srcMap.getXRange(); x++) {
+			for(int y = 0; y < srcMap.getYRange(); y++) {
+				if(nextStateMap.isAlive(x, y)) {
+					srcMap.alive(x, y);
+				} else {
+					srcMap.die(x, y);
+				}
+			}
+		}
+		return nextStateMap;
 	}
 
 	private boolean isAlive(int x, int y) {
