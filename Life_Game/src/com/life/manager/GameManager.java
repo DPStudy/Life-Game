@@ -4,7 +4,8 @@ import com.life.game.map.ArrayLifeMap;
 import com.life.game.map.LifeMap;
 import com.life.game.rule.AbstractRule;
 import com.life.game.rule.CopyStrategyRule;
-import com.life.timer.TickTimer;
+import com.life.viewer.ConsoleViewer;
+import com.life.viewer.Viewer;
 
 public class GameManager implements Runnable{
 	private final long INTERVAL = 5000L;
@@ -15,6 +16,7 @@ public class GameManager implements Runnable{
 	
 	private AbstractRule rule = new CopyStrategyRule();
 	private LifeMap map = new ArrayLifeMap(X_LENGTH,Y_LENGTH);
+	private Viewer viewer = new ConsoleViewer();
 	
 	public void play(){
 		new Thread(this).start();
@@ -31,6 +33,7 @@ public class GameManager implements Runnable{
 			try {
 				this.rule.nextState();
 				Thread.sleep(INTERVAL);
+				viewer.draw(map);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
