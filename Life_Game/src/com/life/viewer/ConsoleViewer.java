@@ -12,17 +12,12 @@ public class ConsoleViewer implements Viewer{
 		final int X_LENGTH = map.getXRange();
 		final int Y_LENGTH = map.getYRange();
 		
-		try {
-			Runtime.getRuntime().exec("cls");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		for(int i=0;i<20;i++) System.out.println(); //
 		
 		for(int y=0; y<Y_LENGTH; y++){
 			for(int x=0; x<X_LENGTH; x++){
 				boolean isAlive = map.isAlive(x, y);
-				System.out.println((isAlive ? "○" : "●")+"\t");
+				System.out.print((isAlive ? "○" : "●")+"\t");
 			}
 			System.out.println();
 		}
