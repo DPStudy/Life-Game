@@ -10,5 +10,5 @@ public abstract class AbstractRule {
 		srcMap = new ArrayLifeMap(xLength, yLength);
 	}
 	
-	abstract void nextState() throws Exception;
+	abstract public void nextState() throws Exception;
 }
