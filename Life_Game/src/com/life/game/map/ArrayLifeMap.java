@@ -36,7 +36,7 @@ public class ArrayLifeMap implements LifeMap {
 	}
 
 	private boolean isValidXY(int x, int y) {
-		if(isValidXY(x, y))
+		if(x >= 0 && x < getXRange() && y >= 0 && y < getYRange())
 			return map[y] != null && map[y][x] != null;
 		else 
 			return false;
