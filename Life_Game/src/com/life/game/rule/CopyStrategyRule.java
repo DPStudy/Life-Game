@@ -7,7 +7,7 @@ public class CopyStrategyRule extends AbstractRule {
 	LifeMap nextStateMap;
 	
 	@Override
-	void nextState() throws Exception {
+	public void nextState() throws Exception {
 		for(int x = 0; x < srcMap.getXRange(); x++) {
 			for(int y = 0; y < srcMap.getYRange(); y++) {
 				if(isAlive(x, y)) {
