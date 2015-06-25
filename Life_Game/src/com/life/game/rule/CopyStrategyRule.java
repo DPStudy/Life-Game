@@ -1,10 +1,17 @@
 package com.life.game.rule;
 
+import com.life.game.map.ArrayLifeMap;
+
 import com.life.game.map.LifeMap;
 
 public class CopyStrategyRule extends AbstractRule {
 	
 	LifeMap nextStateMap;
+	
+	public CopyStrategyRule(int xLength, int yLength) {
+		super(xLength, yLength);
+		nextStateMap = new ArrayLifeMap(xLength, yLength);
+	}
 	
 	@Override
 	void nextState() throws Exception {
