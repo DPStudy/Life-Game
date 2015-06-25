@@ -19,12 +19,13 @@ public class GameManager implements Runnable {
 	private Viewer viewer = new ConsoleViewer();
 	
 	public GameManager() {
-		map.alive(4, 3);
-		map.alive(5, 3);
-		map.alive(6, 3);
+		map.alive(1, 0);
+		map.alive(2, 0);
+		map.alive(3, 0);
 		
-		map.alive(4, 4);
-		map.alive(4, 5);
+		map.alive(0, 1);
+		map.alive(1, 1);
+		map.alive(2, 1);
 		
 		rule = new CopyStrategyRule(map);
 	}
@@ -40,12 +41,19 @@ public class GameManager implements Runnable {
 	
 	@Override
 	public void run() {
+		viewer.draw(map);
+		try {
+			Thread.sleep(INTERVAL);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		while(isPlay){
 			try {
 				map = rule.nextState();
-				Thread.sleep(INTERVAL);
 				viewer.draw(map);
+				Thread.sleep(INTERVAL);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
