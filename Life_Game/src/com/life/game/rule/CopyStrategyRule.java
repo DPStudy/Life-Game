@@ -22,7 +22,7 @@ public class CopyStrategyRule extends AbstractRule {
 	public LifeMap nextState() throws Exception {
 		for(int x = 0; x < srcMap.getXRange(); x++) {
 			for(int y = 0; y < srcMap.getYRange(); y++) {
-				if(isAlive(x, y)) {
+				if(isAlive(x, y, srcMap.isAlive(x, y))) {
 					nextStateMap.alive(x, y);
 				} else {
 					nextStateMap.die(x, y);
@@ -42,7 +42,7 @@ public class CopyStrategyRule extends AbstractRule {
 		return nextStateMap;
 	}
 
-	private boolean isAlive(int x, int y) {
+	private boolean isAlive(int x, int y, boolean isAlive) {
 		int ncout = 0;
 		ncout += neighborAlive(x - 1, y - 1);
 		ncout += neighborAlive(x + 0, y - 1);
@@ -52,7 +52,11 @@ public class CopyStrategyRule extends AbstractRule {
 		ncout += neighborAlive(x - 1, y + 1);
 		ncout += neighborAlive(x + 0, y + 1);
 		ncout += neighborAlive(x + 1, y + 1);
-		return ncout >= 3 ? true : false;
+		if(isAlive) {
+			return ncout == 2  || ncout == 3;
+		} else {
+			return ncout == 3;
+		}
 	}
 
 	private int neighborAlive(int x, int y) {

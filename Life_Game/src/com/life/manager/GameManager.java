@@ -39,13 +39,20 @@ public class GameManager implements Runnable {
 	
 	@Override
 	public void run() {
+		viewer.draw(map);
+		try {
+			Thread.sleep(INTERVAL);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		viewer.draw(map);
 		while(isPlay){
 			try {
 				map = rule.nextState();
-				Thread.sleep(INTERVAL);
 				viewer.draw(map);
+				Thread.sleep(INTERVAL);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
