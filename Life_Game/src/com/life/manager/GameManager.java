@@ -1,6 +1,5 @@
 package com.life.manager;
 
-import com.life.game.map.ArrayLifeMap;
 import com.life.game.map.LifeMap;
 import com.life.game.rule.AbstractRule;
 import com.life.game.rule.CopyStrategyRule;
@@ -9,22 +8,14 @@ import com.life.viewer.Viewer;
 
 public class GameManager implements Runnable {
 	private final long INTERVAL = 1000L;
-	private final int X_LENGTH = 10;
-	private final int Y_LENGTH = 10;
-	
 	private boolean isPlay = false;
 	
 	private AbstractRule rule;
-	private LifeMap map = new ArrayLifeMap(X_LENGTH,Y_LENGTH);
+	private LifeMap map;
 	private Viewer viewer = new ConsoleViewer();
 	
-	public GameManager() {
-		map.alive(1, 0);
-		map.alive(2, 1);
-		map.alive(0, 2);
-		map.alive(1, 2);
-		map.alive(2, 2);
-		
+	public GameManager(LifeMap map) {
+		this.map = map;
 		rule = new CopyStrategyRule(map);
 	}
 	
